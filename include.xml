@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<section if="ios">
+		<dependency name="Foundation.framework" />
+		<dependency name="UIKit.framework" />
+		<dependency name="AVFoundation.framework" />
+		<dependency name="AudioToolbox.framework" />
+		<dependency name="Photos.framework" />
+		<dependency name="UserNotifications.framework" />
+		<dependency name="StoreKit.framework" />
+		<dependency name="Network.framework" />
+	</section>
+</project>

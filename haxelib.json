@@ -1,0 +1,12 @@
+{
+	"name": "extension-iostools",
+	"url": "https://github.com/BrenninhoTools/extension-iostools",
+	"license": "MIT",
+	"tags": ["ios", "objective-c", "native", "extension", "lime", "openfl", "flixel", "cpp", "mobile"],
+	"description": "A library for Haxe/Lime that gives access to native iOS features using Objective-C.",
+	"version": "1.0.0",
+	"releasenote": "Initial release.",
+	"classPath": "source",
+	"contributors": ["Brenninho123"],
+	"dependencies": {}
+}

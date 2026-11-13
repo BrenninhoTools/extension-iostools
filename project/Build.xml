@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<pragma once="true" />
+
+	<set name="IOSTOOLS_DIR" value="${haxelib:extension-iostools}/project" unless="IOSTOOLS_DIR" />
+
+	<files id="haxe">
+		<compilerflag value="-I${IOSTOOLS_DIR}/include" />
+	</files>
+
+	<files id="iostools" if="iphone">
+		<compilerflag value="-I${IOSTOOLS_DIR}/include" />
+		<compilerflag value="-I${IOSTOOLS_DIR}/src" />
+		<compilerflag value="-fobjc-arc" />
+
+		<file name="${IOSTOOLS_DIR}/src/Core.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Device.mm" />
+		<file name="${IOSTOOLS_DIR}/src/App.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Paths.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Screen.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Haptic.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Alert.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Clipboard.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Share.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Permissions.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Notifications.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Network.mm" />
+		<file name="${IOSTOOLS_DIR}/src/Audio.mm" />
+	</files>
+
+	<target id="haxe" if="iphone">
+		<files id="iostools" />
+	</target>
+</xml>
