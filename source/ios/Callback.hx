@@ -1,11 +1,11 @@
 package ios;
 
 #if ios
-import cpp.Callable;
 import cpp.ConstCharStar;
 import haxe.Json;
 import ios.internal.Native;
 
+@:cppFileCode('#include <ios/CallbackBridge.h>')
 class Callback
 {
 	static var initialized:Bool = false;
@@ -19,7 +19,7 @@ class Callback
 			return;
 
 		initialized = true;
-		Native.setEventCallback(Callable.fromStaticFunction(onNativeEvent));
+		Native.setEventCallback(untyped __cpp__('::cpp::Function<void (const char*)>(&::ios::CallbackBridge::receive)'));
 	}
 
 	public static function addListener(listener:EventListener):Void
@@ -53,13 +53,17 @@ class Callback
 		return id;
 	}
 
-	static function onNativeEvent(payload:ConstCharStar):Void
+	@:allow(ios.CallbackBridge)
+	static function dispatch(payload:String):Void
 	{
 		var parsed:Dynamic = null;
 
+		if (payload == null)
+			return;
+
 		try
 		{
-			parsed = Json.parse(payload.toString());
+			parsed = Json.parse(payload);
 		}
 		catch (e:Dynamic)
 		{
@@ -86,6 +90,16 @@ class Callback
 
 		for (listener in listeners.copy())
 			listener(event, data);
+	}
+}
+
+@:nativeGen
+@:keep
+class CallbackBridge
+{
+	public static function receive(payload:ConstCharStar):Void
+	{
+		Callback.dispatch(payload == null ? null : payload.toString());
 	}
 }
 #end
